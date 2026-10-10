@@ -1,4 +1,4 @@
-# 🎬 Lúmen Player (`rkd-orfeu-module`)
+# 🎬 Orfeu Module
 
 <p align="center">
   <img src="https://img.shields.io/badge/platform-Electron-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron">
@@ -14,7 +14,7 @@
 
 ## ✨ About the project
 
-**Lúmen Player** is a YouTube player for desktop (Electron) and web browsers, with a Brazilian Portuguese interface and the **Lúmen** visual identity. The npm package is named `rkd-orfeu-module` (version 1.1.0).
+**Orfeu Module** is a YouTube player for desktop (Electron) and web browsers, with a Brazilian Portuguese interface and the **Lúmen** visual identity. The npm package is named `rkd-orfeu-module` (version 1.1.0).
 
 The main flow is Cinema: you save channels in a modal library, pick a channel to fill a horizontal carousel with public videos (no autoplay), and start playback by clicking a thumbnail. There are three dark themes (Cyberpunk, Radar and Space Station), reactive audio visualizers, a local history of the last 100 watched videos, and JSON storage on disk — no external database and no YouTube Data API key.
 
