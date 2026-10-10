@@ -1,176 +1,185 @@
-# Lúmen Player (`rkd-player-module`)
+# 🎬 Lúmen Player (`rkd-player-module`)
 
-## ✨ Sobre o projeto
+<p align="center">
+  <img src="https://img.shields.io/badge/platform-Electron-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron">
+  <img src="https://img.shields.io/badge/runtime-Node.js-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/language-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/markup-HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
+  <img src="https://img.shields.io/badge/style-CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
+  <img src="https://img.shields.io/badge/api-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube IFrame Player API">
+  <img src="https://img.shields.io/badge/testing-Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright">
+  <img src="https://img.shields.io/badge/format-JSON-000000?style=for-the-badge&logo=json&logoColor=white" alt="JSON">
+  <img src="https://img.shields.io/badge/tool-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+</p>
 
-**Lúmen Player** é um player de YouTube para desktop (Electron) e navegador, com interface em português (Brasil) e identidade visual **Lúmen**. O pacote npm chama-se `rkd-player-module` (versão 1.1.0).
+## ✨ About the project
 
-O fluxo principal é Cinema: você salva canais na biblioteca modal, escolhe um canal para preencher o carrossel horizontal com vídeos públicos (sem autoplay) e inicia a reprodução ao clicar em uma miniatura. Há três temas escuros (Cyberpunk, Radar e Estação Espacial), visualizadores de áudio reativos, histórico local dos últimos 100 vídeos assistidos e armazenamento em JSON no disco — sem banco de dados externo e sem chave da YouTube Data API.
+**Lúmen Player** is a YouTube player for desktop (Electron) and web browsers, with a Brazilian Portuguese interface and the **Lúmen** visual identity. The npm package is named `rkd-player-module` (version 1.1.0).
 
-Licença do código: **MIT** (arquivo `LICENSE`). Os nomes e coordenadas de cidades do tema Radar usam GeoNames (CC BY 4.0); detalhes em [`RADAR-DATA-NOTICES.md`](RADAR-DATA-NOTICES.md).
+The main flow is Cinema: you save channels in a modal library, pick a channel to fill a horizontal carousel with public videos (no autoplay), and start playback by clicking a thumbnail. There are three dark themes (Cyberpunk, Radar and Space Station), reactive audio visualizers, a local history of the last 100 watched videos, and JSON storage on disk — no external database and no YouTube Data API key.
 
-## 🛠 Tecnologias utilizadas
+The code is licensed under **MIT** (see `LICENSE`). City names and coordinates in the Radar theme come from GeoNames (CC BY 4.0); details in [`RADAR-DATA-NOTICES.md`](RADAR-DATA-NOTICES.md).
 
-| Tecnologia | Uso no projeto |
+## 🛠️ Technologies used
+
+| Technology | What it is used for |
 | --- | --- |
-| **JavaScript (CommonJS e módulos de UI)** | Lógica do app, IPC, servidores locais e interface |
-| **HTML e CSS** | Layout Cinema, diálogos, temas e estilos |
-| **Node.js ≥ 22.12.0** | Runtime exigido em `package.json` (`engines.node`) |
-| **Electron 44.3.0** | Janela desktop, IPC restrito, opacidade nativa e captura de áudio da própria janela |
-| **Playwright 1.63.0** | Dependência de desenvolvimento para testes Electron/navegador |
-| **Node.js test runner** (`node --test`) | Suite unitária em `tests/*.test.cjs` |
-| **YouTube IFrame Player API** | Reprodução embutida (`player.js` / `space-player.js`) |
-| **Web Audio API + Canvas 2D** | Análise de áudio e desenho dos visualizadores |
-| **HTTP nativo do Node** | Servidores locais do Electron (`server.cjs`) e versão web (`web-server.cjs`) |
-| **JSON em disco** | Persistência de biblioteca, histórico e preferências (`data/library.json`) |
-| **OpenSky Network API** | Posições de aeronaves no tema Radar (acesso anônimo; sem chave no código) |
-| **Natural Earth / GeoNames** | Mapa-base (`radar-map.json`) e cidades (`radar-cities.json`) |
-| **Docker (`Dockerfile.web`)** | Imagem Node Alpine só da versão web (`node:22-alpine`) |
+| **JavaScript (CommonJS and UI modules)** | App logic, IPC, local servers and the user interface |
+| **HTML and CSS** | Cinema layout, dialogs, themes and styles |
+| **Node.js ≥ 22.12.0** | Runtime required by `package.json` (`engines.node`) |
+| **Electron 44.3.0** | Desktop window, restricted IPC, native opacity and capture of the window's own audio |
+| **Playwright 1.63.0** | Development dependency for Electron/browser tests |
+| **Node.js test runner** (`node --test`) | Unit tests in `tests/*.test.cjs` |
+| **YouTube IFrame Player API** | Embedded playback (`player.js` / `space-player.js`) |
+| **Web Audio API + Canvas 2D** | Audio analysis and drawing of the visualizers |
+| **Native Node.js HTTP** | Local Electron server (`server.cjs`) and web version (`web-server.cjs`) |
+| **JSON on disk** | Persistence of library, history and preferences (`data/library.json`) |
+| **OpenSky Network API** | Aircraft positions in the Radar theme (anonymous access; no key in the code) |
+| **Natural Earth / GeoNames** | Base map (`radar-map.json`) and cities (`radar-cities.json`) |
+| **Docker (`Dockerfile.web`)** | Node Alpine image (`node:22-alpine`) for the web version only |
 
-Não há framework de UI (React, Vue etc.), bundler de frontend nem instalador/empacotamento definidos no repositório — a execução é a partir do código-fonte com `npm`.
+There is no UI framework (React, Vue, etc.), no frontend bundler and no installer/packaging defined in the repository — the app runs from source with `npm`.
 
-## 🚀 Funcionalidades mapeadas
+## 🚀 Mapped features
 
-Status: **COMPLETA** = implementada, coberta por testes adequados e esses testes passaram nesta verificação. **PARCIAL** = implementada pela metade, sem testes suficientes, ou com testes falhando / impossíveis de concluir neste ambiente.
+Status legend: **COMPLETE** = implemented, covered by adequate tests, and those tests pass. **PARTIAL** = implemented halfway, without enough tests, or covered by tests that fail or cannot run offline.
 
-| Funcionalidade | O que faz | Status |
+| Feature | What it does | Status |
 | --- | --- | --- |
-| Biblioteca de canais | Salva links de canal (`@handle`, `/channel/`, `/c/`, `/user/`), resolve ID canônico, busca, remove, exibe avatar/banner/inscritos e limita a 2.000 canais | COMPLETA |
-| Migração de biblioteca legada | Converte registros antigos de vídeo em canais únicos; mantém falhas em `legacyVideos` e oferece “Tentar converter novamente” | COMPLETA |
-| Recomendações e carrossel | Busca vídeos públicos do canal (feed/página), cache ~5 min / até 360 candidatos, sorteia até 16 miniaturas, sem autoplay ao só selecionar o canal | COMPLETA |
-| Reprodução YouTube (Cinema) | Player embutido isolado (origem loopback separada), controles nativos do YouTube, seleção pelo carrossel | COMPLETA |
-| Histórico de reprodução | Guarda até 100 vídeos assistidos (miniatura, título, data); clique/teclado reproduz e recarrega o carrossel do canal | COMPLETA |
-| Curtidas locais | Botão de curtir no player marca entradas no histórico; não envia like à conta do YouTube | COMPLETA |
-| Visualizador de áudio | Seis estilos (Barras, Ondas, Aurora, DNA, Constelação, Matriz LED) na barra de título, com captura do áudio da própria janela/aba | COMPLETA |
-| Fundo Cyberpunk | Slideshow de capas do histórico / capa do vídeo em reprodução nos modais do tema Cyberpunk | COMPLETA |
-| Versão web (HTTP + API) | Servidor `web-server.cjs`, ponte `web-bridge.js`, `/health`, persistência server-side e integração no navegador | COMPLETA |
-| Persistência JSON | Lê/grava `library.json` com escrita atômica e backup se o arquivo estiver ilegível; pastas `data/`, `test-results/`, `work/` ignoradas pelo Git | COMPLETA |
-| Nomes de cidades no Radar | Rótulos locais a partir de `radar-cities.json` (GeoNames), sem sobreposição no canvas | COMPLETA |
-| Temas da interface | Três temas (Cyberpunk, Radar, Estação Espacial) com presets de cor do vídeo, visualizador e transparência | PARCIAL |
-| Cor sobre o vídeo | Overlay com ~16% de opacidade (amarelo, azul, vermelho, rosa ou nenhum) | PARCIAL |
-| Transparência da janela | Slider 0%–65% via opacidade nativa do Electron (oculto na web) | PARCIAL |
-| Continuar ao minimizar | Preferência desktop para manter ou pausar ao minimizar a janela | PARCIAL |
-| Fundo Radar (OpenSky ao vivo) | Mapa com aeronaves reais (~60 s), região padrão SP/RJ ou centrada na localização; canvas compartilhado com modais | PARCIAL |
-| Localização do dispositivo (Radar) | No desktop Windows usa PowerShell; na web usa `geolocation` do navegador; coordenadas só em memória | PARCIAL |
-| Fundo Estação Espacial (ISS) | Livestream da ISS (Sen) mutada atrás da UI; move-se para modais sem reiniciar | PARCIAL |
+| Channel library | Saves channel links (`@handle`, `/channel/`, `/c/`, `/user/`), resolves the canonical ID, searches, removes, shows avatar/banner/subscribers, and limits the library to 2,000 channels | COMPLETE |
+| Legacy library migration | Converts old video records into unique channels; keeps failures in `legacyVideos` and offers "retry conversion" | COMPLETE |
+| Recommendations and carousel | Fetches public channel videos (feed/page), caches for ~5 min / up to 360 candidates, draws up to 16 thumbnails, no autoplay when only selecting a channel | COMPLETE |
+| YouTube playback (Cinema) | Isolated embedded player (separate loopback origin), native YouTube controls, selection from the carousel | COMPLETE |
+| Playback history | Stores up to 100 watched videos (thumbnail, title, date); click/keyboard replays and reloads the channel carousel | COMPLETE |
+| Local likes | Like button in the player marks history entries; does not send a like to the YouTube account | COMPLETE |
+| Audio visualizer | Six styles (Bars, Waves, Aurora, DNA, Constellation, LED Matrix) in the title bar, capturing the window/tab's own audio | COMPLETE |
+| Cyberpunk background | Slideshow of history covers / current video cover in the Cyberpunk theme modals | COMPLETE |
+| Web version (HTTP + API) | `web-server.cjs` server, `web-bridge.js` bridge, `/health`, server-side persistence and browser integration | COMPLETE |
+| JSON persistence | Reads/writes `library.json` with atomic writes and a backup if the file is unreadable; `data/`, `test-results/` and `work/` are git-ignored | COMPLETE |
+| Radar city names | Local labels from `radar-cities.json` (GeoNames), without overlap on the canvas | COMPLETE |
+| UI themes | Three themes (Cyberpunk, Radar, Space Station) with video color presets, visualizer and transparency | PARTIAL |
+| Video color overlay | ~16% opacity overlay (yellow, blue, red, pink or none) | PARTIAL |
+| Window transparency | 0%–65% slider using Electron's native opacity (hidden on web) | PARTIAL |
+| Keep playing when minimized | Desktop preference to keep or pause playback when the window is minimized | PARTIAL |
+| Radar background (live OpenSky) | Map with real aircraft (~60 s refresh), default SP/RJ region or centered on the device location; canvas shared with modals | PARTIAL |
+| Device location (Radar) | On Windows desktop it uses PowerShell; on the web it uses the browser `geolocation`; coordinates stay in memory only | PARTIAL |
+| Space Station background (ISS) | Muted ISS livestream behind the UI; moves to modals without restarting | PARTIAL |
 
-**Cobertura de testes (mapeamento resumido)**
+### Test coverage summary
 
-| Área | Testes que cobrem |
+| Area | Tests that cover it |
 | --- | --- |
-| URLs, settings, store, canais | `npm test` → `tests/core.test.cjs` |
-| Histórico e curtidas | `tests/history.test.cjs`; Electron: `test:history`, `test:history-playback` |
-| Migração legado | `tests/migration.test.cjs`; também exercitada em `test:recommendations` |
-| Recomendações / catálogo | `tests/recommendations.test.cjs`, `tests/recommendation-catalog.test.cjs`; Electron: `test:recommendations`, `test:channels` |
-| Radar (lógica) | `tests/radar.test.cjs`, `tests/location.test.cjs` |
-| Fundo Cyberpunk | `tests/cyberpunk-background.test.cjs`; `test:cyberpunk-background` |
-| Cidades no mapa Radar | `test:radar-cities` |
-| Servidor web | `tests/web-server.test.cjs`; `test:web` |
-| Visualizador ao vivo | `test:visualizer` |
-| OpenSky ao vivo / localização Windows / minimizar | `test:radar`, `test:radar-location`, `test:youtube`, trechos de `test:app` — nesta verificação falharam ou não concluíram |
+| URLs, settings, store, channels | `npm test` → `tests/core.test.cjs` |
+| History and likes | `tests/history.test.cjs`; Electron: `test:history`, `test:history-playback` |
+| Legacy migration | `tests/migration.test.cjs`; also exercised in `test:recommendations` |
+| Recommendations / catalog | `tests/recommendations.test.cjs`, `tests/recommendation-catalog.test.cjs`; Electron: `test:recommendations`, `test:channels` |
+| Radar (logic) | `tests/radar.test.cjs`, `tests/location.test.cjs` |
+| Cyberpunk background | `tests/cyberpunk-background.test.cjs`; `test:cyberpunk-background` |
+| Radar map cities | `test:radar-cities` |
+| Web server | `tests/web-server.test.cjs`; `test:web` |
+| Live visualizer | `test:visualizer` |
+| Themes / preferences | `test:app` — fails in the last verification (an assertion in `scripts/test-app.cjs` line 65: expected 1, got 2) |
+| Live OpenSky / Windows location / minimize | `test:radar`, `test:radar-location`, `test:youtube` — need real network or Windows and were not verified |
 
-## ▶️ Como executar o projeto
+## ▶️ How to run the project
 
-### Requisitos
+### Requirements
 
-1. **Node.js 22.12.0 ou mais recente** e **npm** (o `package.json` declara `"engines": { "node": ">=22.12.0" }`).
-2. **Acesso à internet** para instalar dependências e carregar YouTube, metadados, miniaturas e (no tema Radar) a API OpenSky.
-3. **Desktop (Electron):** sistema onde o Electron 44 rode; os scripts de teste usam Playwright. Em Linux headless, um display virtual (`xvfb-run`) costuma ser necessário para a janela.
-4. **Web:** apenas Node.js (não precisa instalar Electron se for só `start:web`).
-5. **Docker (opcional):** para a imagem definida em `Dockerfile.web`.
+1. **Node.js 22.12.0 or newer** and **npm** (`package.json` declares `"engines": { "node": ">=22.12.0" }`).
+2. **Internet access** to install dependencies and to load YouTube, metadata, thumbnails and (in the Radar theme) the OpenSky API.
+3. **Desktop (Electron):** a system where Electron 44 can run. On headless Linux, a virtual display (`xvfb-run`) is usually needed to open the window.
+4. **Web:** only Node.js (Electron is not needed if you only use `start:web`).
+5. **Docker (optional):** to build the image defined in `Dockerfile.web`.
 
-Não há script de empacotamento/instalador no repositório — a execução é a partir do código-fonte.
+### Install
 
-### Instalação
-
-No diretório do projeto (raiz deste repositório, onde está o `package.json`):
+From the project root (where `package.json` is):
 
 ```bash
 npm ci
 ```
 
-`npm ci` instala as versões fixadas em `package-lock.json` (Electron e Playwright como `devDependencies`). Se preferir, `npm install` também funciona, mas `npm ci` é o caminho reproduzível.
+`npm ci` installs the versions pinned in `package-lock.json` (Electron and Playwright as `devDependencies`). `npm install` also works, but `npm ci` is the reproducible path.
 
-### Versão desktop (Electron)
+### Desktop version (Electron)
 
 ```bash
 npm start
 ```
 
-Isso executa `node scripts/start.cjs`, que sobe o Electron com o app. Servidores locais bindam em `127.0.0.1` em portas livres. Dados padrão em `data/` (sessão Electron em `data/session/`).
+This runs `node scripts/start.cjs`, which launches Electron with the app. Local servers bind to `127.0.0.1` on free ports. Data is stored in `data/` by default (Electron session in `data/session/`).
 
-Para isolar os dados em outra pasta:
+To keep the data in another folder:
 
 ```bash
 export LUMEN_DATA_DIR="$PWD/work/demo-data"
 npm start
 ```
 
-No Windows, o launcher define `NODE_USE_SYSTEM_CA=1` quando ainda não estiver definido (confiança no store de certificados do sistema).
+On Windows, the launcher sets `NODE_USE_SYSTEM_CA=1` when it is not already set (trusting the system certificate store).
 
-### Versão web (navegador)
+### Web version (browser)
 
 ```bash
 npm run start:web
 ```
 
-Abra `http://localhost:3000` (padrão: host `127.0.0.1`, porta `3000`). A biblioteca fica em `data/library.json` no servidor.
+Open `http://localhost:3000` (defaults: host `127.0.0.1`, port `3000`). The library is stored in `data/library.json` on the server.
 
-Variáveis úteis (todas opcionais):
+Optional environment variables:
 
-| Variável | Padrão | Função |
+| Variable | Default | Purpose |
 | --- | --- | --- |
-| `PORT` | `3000` | Porta HTTP |
-| `LUMEN_HOST` | `127.0.0.1` | Endereço de bind |
-| `LUMEN_DATA_DIR` | `<projeto>/data` | Diretório dos dados |
-| `LUMEN_ALLOWED_HOSTS` | `localhost,127.0.0.1` | Hosts HTTP aceitos (lista separada por vírgula) |
+| `PORT` | `3000` | HTTP port |
+| `LUMEN_HOST` | `127.0.0.1` | Bind address |
+| `LUMEN_DATA_DIR` | `<project>/data` | Data directory |
+| `LUMEN_ALLOWED_HOSTS` | `localhost,127.0.0.1` | Accepted HTTP hosts (comma-separated list) |
 
-Exemplo em outra porta:
+Example on another port:
 
 ```bash
 PORT=3001 npm run start:web
 ```
 
-Na web: transparência nativa e “Continuar ao minimizar” ficam desligados/forçados pelo servidor; o visualizador depende de compartilhar a aba com áudio; a geolocalização do Radar pede permissão do navegador em contexto seguro (`localhost` ou HTTPS). A API web não tem login — restrinja a porta a redes/usuários confiáveis.
+On the web, native transparency and "keep playing when minimized" are disabled/forced by the server; the visualizer depends on sharing the tab with audio; Radar geolocation asks for browser permission in a secure context (`localhost` or HTTPS). The web API has no login — restrict the port to trusted networks/users.
 
-### Container (só web)
+### Container (web only)
 
-O `Dockerfile.web` copia apenas `src/`, usa `node:22-alpine`, define `PORT=3000`, `LUMEN_HOST=0.0.0.0`, `LUMEN_DATA_DIR=/data` e inicia `node src/web-server.cjs`. Volume sugerido: `/data` (arquivo `library.json`). Endpoint `/health` responde readiness básico.
-
-Exemplo local:
+`Dockerfile.web` copies only `src/`, uses `node:22-alpine`, sets `PORT=3000`, `LUMEN_HOST=0.0.0.0` and `LUMEN_DATA_DIR=/data`, and starts `node src/web-server.cjs`. The suggested volume is `/data` (the `library.json` file). The `/health` endpoint answers basic readiness.
 
 ```bash
 docker build -f Dockerfile.web -t lumen-web .
 docker run --rm -p 8082:3000 -v lumen_player_data:/data lumen-web
 ```
 
-Depois acesse `http://localhost:8082`. Se o host publicado não for `localhost`/`127.0.0.1`, configure `LUMEN_ALLOWED_HOSTS` incluindo esses nomes se ainda forem necessários.
+Then open `http://localhost:8082`. If you publish the port under a host name other than `localhost`/`127.0.0.1`, set `LUMEN_ALLOWED_HOSTS` to include the name you use.
 
-### Arquivos e pastas relevantes
+### Relevant files and folders
 
-| Caminho | Papel |
+| Path | Role |
 | --- | --- |
-| `data/library.json` | Canais, histórico, settings e `legacyVideos` (criado em runtime; não versionado) |
-| `LUMEN_DATA_DIR` / `LUMEN_TEST_DIR` | Sobrescrevem dados do app e saída/isolamento de testes |
-| `RADAR-DATA-NOTICES.md` | Atribuição GeoNames e regeneração via `scripts/import-radar-cities.cjs` |
+| `data/library.json` | Channels, history, settings and `legacyVideos` (created at runtime; not versioned) |
+| `LUMEN_DATA_DIR` / `LUMEN_TEST_DIR` | Override app data and test output/isolation |
+| `RADAR-DATA-NOTICES.md` | GeoNames attribution and regeneration via `scripts/import-radar-cities.cjs` |
 
-Nada além disso precisa ser editado para subir o player; não há arquivo `.env` obrigatório no repositório.
+Nothing else needs to be edited to start the player; there is no mandatory `.env` file in the repository.
 
-### Testes (referência)
+### Tests (reference)
 
 ```bash
-npm test                          # unitários (node --test)
-npm run test:web                  # integração no Edge (Playwright)
-npm run test:channels             # Electron — troca de canais
-npm run test:recommendations      # Electron — carrossel / playback
-npm run test:history              # Electron — histórico
-npm run test:history-playback     # Electron — replay pelo histórico
-npm run test:visualizer           # Electron — captura de áudio
-npm run test:cyberpunk-background # Chromium — fundo Cyberpunk
-npm run test:radar-cities         # Chromium — rótulos de cidades
-npm run test:app                  # Electron — biblioteca / temas / persistência
-npm run test:radar                # Electron — OpenSky ao vivo
-npm run test:radar-location       # Electron — localização (foco Windows)
-npm run test:youtube              # Electron — playback + minimizar
+npm test                          # unit tests (node --test)
+npm run test:web                  # browser integration (Playwright, Edge)
+npm run test:channels             # Electron — channel switching
+npm run test:recommendations      # Electron — carousel / playback
+npm run test:history              # Electron — history
+npm run test:history-playback     # Electron — replay from history
+npm run test:visualizer           # Electron — audio capture
+npm run test:cyberpunk-background # Chromium — Cyberpunk background
+npm run test:radar-cities         # Chromium — city labels
+npm run test:app                  # Electron — library / themes / persistence
+npm run test:radar                # Electron — live OpenSky
+npm run test:radar-location       # Electron — location (Windows focus)
+npm run test:youtube              # Electron — playback + minimize
 ```
 
-Os testes Electron costumam precisar de display (por exemplo `xvfb-run -a npm run test:channels` em Linux headless) e, em vários casos, de rede real.
+Electron tests usually need a display (for example `xvfb-run -a npm run test:channels` on headless Linux) and, in many cases, real network access.
