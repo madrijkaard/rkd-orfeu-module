@@ -42,7 +42,7 @@ function createRadar({ fetchImpl = (...args) => fetch(...args), now = Date.now }
     const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(15000)]);
     pending = (async () => {
       try {
-        const response = await fetchImpl(url.toString(), { signal, headers: { Accept: 'application/json', 'User-Agent': 'rkd-player-module/1.1.0 (desktop flight-map background)' } });
+        const response = await fetchImpl(url.toString(), { signal, headers: { Accept: 'application/json', 'User-Agent': 'rkd-orfeu-module/1.1.0 (desktop flight-map background)' } });
         if (requestRevision !== revision) return current();
         if (response.status === 429) {
           const seconds = Number(response.headers.get('X-Rate-Limit-Retry-After-Seconds') || response.headers.get('Retry-After'));
