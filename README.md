@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/images/orfeu-logo.png" alt="Orfeu Module logo" width="320"></p>
+
 # 🎬 Orfeu Module
 
 <p align="center">
